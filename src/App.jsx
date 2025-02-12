@@ -1,5 +1,27 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MainLoyout from "./components/MainLoyout";
+import Home from "./pages/Home";
+import SingleProduct from "./pages/SingleProduct";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLoyout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/singleproducts/:id",
+        element: <SingleProduct />,
+      },
+    ],
+  },
+]);
+
 function App() {
-  return <div></div>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
