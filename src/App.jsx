@@ -2,25 +2,28 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLoyout from "./components/MainLoyout";
 import Home from "./pages/Home";
 import SingleProduct from "./pages/SingleProduct";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainLoyout />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/singleproducts/:id",
-        element: <SingleProduct />,
-      },
-    ],
-  },
-]);
+import PageNoInfo from "./pages/PageNoInfo";
+import { useState } from "react";
 
 function App() {
+  const [salom, setSalom] = useState(false);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <MainLoyout />,
+      children: [
+        {
+          index: true,
+          element: salom ? <Home /> : <PageNoInfo />, // Shart qo‘ydik
+        },
+        {
+          path: "/singleproducts/:id",
+          element: <SingleProduct />,
+        },
+      ],
+    },
+  ]);
+
   return <RouterProvider router={router} />;
 }
 

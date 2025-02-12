@@ -32,7 +32,7 @@ function SingleProduct() {
         </div>
       </div>
 
-      <div className=" rounded-xl shadow-lg p-[48px] w-full max-w-[730px] overflow-y-auto h-[450px] bg-white ">
+      <div className=" rounded-xl shadow-lg p-[48px] w-full max-w-[730px] overflow-y-auto h-[400px] bg-white ">
         {/* Go Back */}
 
         {/* Invoice Details */}
