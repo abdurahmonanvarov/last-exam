@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import DeletModal from "../components/DeletModal";
 import axios from "axios";
+import { toast } from "react-toastify"; // Import toastify for notifications
+import "react-toastify/dist/ReactToastify.css"; // Import styles
 
 function SingleProduct() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +19,8 @@ function SingleProduct() {
   const handleCloseModal = () => {
     setIsOpen(false);
   };
+
+  //malumotni olish
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,10 +39,36 @@ function SingleProduct() {
     }
   }, [id]);
 
+  /// paid ni qoshish
+
+  const handleMarkAsPaid = async () => {
+    if (productData?.status === "paid") {
+      toast.warn("This prodact was added already :)");
+      return;
+    }
+
+    try {
+      const updatedProduct = { ...productData, status: "paid" };
+      await axios.put(`http://localhost:3000/treap/${id}`, updatedProduct);
+
+      setProductData((prevData) => ({
+        ...prevData,
+        status: "paid",
+      }));
+
+      toast.success("The info bocome paid succesfully :)");
+    } catch (err) {
+      toast.error("Failed to update the status", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
+    }
+  };
+
   if (loading) {
     return (
       <div className="fixed inset-0 z-50 flex justify-center items-center bg-opacity-50 bg-gray-800">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>{" "}
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
       </div>
     );
   }
@@ -76,7 +106,7 @@ function SingleProduct() {
                     : "bg-[#FF8F00]"
                 } rounded-full`}
               ></span>
-              {productData?.status || "Padding"}
+              {productData?.status || "Pending"}
             </span>
           </span>
           <div className="flex items-center gap-[8px]">
@@ -89,7 +119,10 @@ function SingleProduct() {
             >
               Delete
             </button>
-            <button className="bg-purple-600 text-white py-[16px] px-[23px] rounded-[25px] hover:bg-purple-700 transition">
+            <button
+              onClick={handleMarkAsPaid} // Add the onClick event to mark as paid
+              className="bg-purple-600 text-white py-[16px] px-[23px] rounded-[25px] hover:bg-purple-700 transition"
+            >
               Mark as Paid
             </button>
           </div>
