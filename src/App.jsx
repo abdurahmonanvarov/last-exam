@@ -3,10 +3,30 @@ import MainLoyout from "./components/MainLoyout";
 import Home from "./pages/Home";
 import SingleProduct from "./pages/SingleProduct";
 import PageNoInfo from "./pages/PageNoInfo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
-  const [salom, setSalom] = useState(false);
+  const [exsist, setExsist] = useState(true);
+  const [malumot, setMalumot] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/treap");
+        setMalumot(response.data);
+      } catch (error) {
+        console.error("API dan malumot olishda xatolik:", error);
+        setExsist(false); // Xatolik bo'lsa, exsist false bo'ladi
+      }
+    };
+
+    fetchData();
+  }, []);
+  useEffect(() => {
+    setExsist(malumot.length > 0);
+  }, [malumot]);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -14,7 +34,7 @@ function App() {
       children: [
         {
           index: true,
-          element: salom ? <Home /> : <PageNoInfo />, // Shart qo‘ydik
+          element: exsist ? <Home /> : <PageNoInfo />, // Shart qo‘ydik
         },
         {
           path: "/singleproducts/:id",
