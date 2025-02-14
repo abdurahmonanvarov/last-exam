@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { PiPlusCircleDuotone } from "react-icons/pi";
+import SaveInfo from "./SaveInfo";
 
 function Navbar({ onFilterChange }) {
   const [selectedOption, setSelectedOption] = useState("all");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -31,7 +33,8 @@ function Navbar({ onFilterChange }) {
               >
                 <option value="all">Default</option>
                 <option value="paid">Paid</option>
-                <option value="pending">Unpaid</option>
+                <option value="pending">Pending</option>
+                <option value="draft">Draft</option>
               </select>
               <svg
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4"
@@ -49,12 +52,17 @@ function Navbar({ onFilterChange }) {
               </svg>
             </div>
           </div>
-          <div className="bg-[#9277FF] cursor-pointer w-[150px] h-[48px] rounded-[15px] flex gap-[16px] pl-[8px] pt-[8px]">
+          <div
+            className="bg-[#9277FF] cursor-pointer w-[150px] h-[48px] rounded-[15px] flex gap-[16px] pl-[8px] pt-[8px]"
+            onClick={() => setIsModalOpen(true)}
+          >
             <PiPlusCircleDuotone className="w-[32px] h-[32px] text-white rounded" />
             <span className="text-[12px] text-white mt-[7px]">New Invoice</span>
           </div>
         </div>
       </header>
+
+      {isModalOpen && <SaveInfo onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 }
