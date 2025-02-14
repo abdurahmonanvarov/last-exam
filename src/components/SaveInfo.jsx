@@ -274,5 +274,6 @@ function SaveInfo({ onClose }) {
     </div>
   );
 }
+// salom
 
 export default SaveInfo;
