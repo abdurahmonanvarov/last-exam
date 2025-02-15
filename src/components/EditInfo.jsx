@@ -3,23 +3,19 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid"; // Import the UUID function
 import { toast } from "react-toastify";
 
-function SaveInfo({ onClose }) {
+function EditInfo({ onClose }) {
   const [items, setItems] = useState([]);
   const [formData, setFormData] = useState({
     streetAddress: "",
     city: "",
     postCode: " ",
     country: " ",
-    clientName: " ",
+    clientName: "",
     clientEmail: "",
-    clientStreet: "  ",
+    clientStreet: "",
     clientCity: "",
-    clientPostCode: " ",
-    clientCountry: " ",
-    createdAt: "",
-    paymentDue: "",
-    clientPhone: "", // New field
-    clientCompany: "", // New field
+    clientPostCode: "",
+    clientCountry: "",
   });
 
   const [newItem, setNewItem] = useState({ name: "", qty: 1, price: 0 });
@@ -27,7 +23,7 @@ function SaveInfo({ onClose }) {
   const addItem = () => {
     if (newItem.name && newItem.qty && newItem.price) {
       setItems([...items, newItem]);
-      setNewItem({ name: "", qty: 1, price: 0 });
+      setNewItem({ name: "", qty: 1, price: 0 }); // Reset new item fields after adding
     } else {
       toast.error("All item fields are required!");
     }
@@ -43,11 +39,14 @@ function SaveInfo({ onClose }) {
     setNewItem({ ...newItem, [name]: value });
   };
 
+  // Calculate the total amount of all items dynamically
   const calculateTotalAmount = () => {
     return items.reduce((acc, item) => acc + item.qty * item.price, 0);
   };
 
+  // Validate form and items before saving
   const validateForm = () => {
+    // Check if all fields are filled
     const fields = [
       "streetAddress",
       "city",
@@ -59,8 +58,6 @@ function SaveInfo({ onClose }) {
       "clientCity",
       "clientPostCode",
       "clientCountry",
-      "createdAt",
-      "paymentDue",
     ];
 
     for (let field of fields) {
@@ -79,14 +76,20 @@ function SaveInfo({ onClose }) {
   };
 
   const handleSave = async (status) => {
-    if (!validateForm()) return;
+    if (!validateForm()) return; // Stop if validation fails
 
+    // Generate unique ID for the invoice
     const invoiceId = uuidv4();
+    const today = new Date();
 
     const invoiceData = {
-      id: invoiceId,
-      createdAt: formData.createdAt,
-      paymentDue: formData.paymentDue,
+      id: invoiceId, // Use generated ID
+      createdAt: `${today.getFullYear()}-${String(
+        today.getMonth() + 1
+      ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`,
+      paymentDue: `${today.getFullYear()}-${String(
+        today.getMonth() + 1
+      ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`,
       description: "Re-branding",
       paymentTerms: 1,
       clientName: formData.clientName || "",
@@ -110,13 +113,13 @@ function SaveInfo({ onClose }) {
         price: item.price || 0,
         total: item.qty * item.price || 0,
       })),
-      total: calculateTotalAmount(),
+      total: calculateTotalAmount(), // Calculate total dynamically
     };
 
     try {
       await axios.post("http://localhost:3000/treap", invoiceData);
       toast.success("Success: Invoice saved!");
-      onClose();
+      onClose(); // Close the modal after successful submission
     } catch (error) {
       console.error("Error saving invoice:", error);
       alert("Error: Could not save the invoice.");
@@ -129,127 +132,74 @@ function SaveInfo({ onClose }) {
         <h2 className="text-[24px] font-bold mb-[48px] text-[#7E88C3]">
           New Invoice
         </h2>
-
-        <section className="mb-6">
-          <h2 className="text-[12px] font-semibold text-[#7E88C3]">
-            Bill From
-          </h2>
-
-          <input
-            value={formData.street}
-            onChange={handleInputChange}
-            className="w-full  bg-white border p-2 rounded mt-2"
-            type="text"
-            placeholder="Street Address"
-          />
-          <div className="grid grid-cols-3 gap-4 mt-2">
+        <div className="space-y-4">
+          {/* Sender Address */}
+          <div className="mb-[10px]">
+            <label className="block text-[12px] font-medium text-[#7E88C3] mb-[10px]">
+              Street Address
+            </label>
             <input
-              name="city"
-              value={formData.city}
+              className="w-full border p-2 rounded bg-white text-[#0C0E16]"
+              name="streetAddress"
+              value={formData.streetAddress}
               onChange={handleInputChange}
-              className="border  bg-white p-2 rounded"
-              type="text"
-              placeholder="City"
-            />
-            <input
-              name="postCode"
-              value={formData.postCode}
-              onChange={handleInputChange}
-              className="border  bg-white p-2 rounded"
-              type="text"
-              placeholder="Post Code"
-            />
-            <input
-              name="country"
-              value={formData.country}
-              onChange={handleInputChange}
-              className="border  bg-white p-2 rounded"
-              type="text"
-              placeholder="Country"
             />
           </div>
-        </section>
+          {/* Additional fields for sender and client address */}
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <label className="block mb-2 text-sm font-medium text-[#0C0E16]">
+                City
+              </label>
+              <input
+                className="border p-2 rounded bg-white text-[#0C0E16] mb-[10px]"
+                name="city"
+                value={formData.city}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label className="block mb-2 text-sm font-medium text-[#0C0E16]">
+                Post Code
+              </label>
+              <input
+                className="border p-2 rounded bg-white text-[#0C0E16] mb-[10px]"
+                name="postCode"
+                value={formData.postCode}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label className="block mb-2 text-sm font-medium text-[#0C0E16]">
+                Country
+              </label>
+              <input
+                className="border p-2 rounded bg-white text-[#0C0E16] mb-[10px]"
+                name="country"
+                value={formData.country}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+        </div>
 
-        <section>
-          <h2 className="text-[12px] font-semibold  text-[#7E88C3]">Bill To</h2>
+        {/* Client Address */}
+        <h3 className="text-xl font-semibold mt-6 text-[#7E88C3]">Bill To</h3>
+        <div className="space-y-4">
+          {/* Client information */}
           <input
+            className="w-full border p-2 rounded bg-white text-[#0C0E16] mb-[10px]"
             name="clientName"
             value={formData.clientName}
             onChange={handleInputChange}
-            className="w-full border  bg-white p-2 rounded mt-2"
-            type="text"
-            placeholder="Client’s Name"
           />
           <input
+            className="w-full border p-2 rounded bg-white text-[#0C0E16] mb-[10px]"
             name="clientEmail"
             value={formData.clientEmail}
             onChange={handleInputChange}
-            className="w-full  bg-white border p-2 rounded mt-2"
-            type="email"
-            placeholder="e.g. email@example.com"
           />
-          <input
-            name="clientStreet"
-            value={formData.clientStreet}
-            onChange={handleInputChange}
-            className="w-full  bg-white border p-2 rounded mt-2"
-            type="text"
-            placeholder="Street Address"
-          />
-          <div className="grid grid-cols-3 gap-4 mt-2">
-            <input
-              name="clientCity"
-              value={formData.clientCity}
-              onChange={handleInputChange}
-              className="border  bg-white p-2 rounded"
-              type="text"
-              placeholder="City"
-            />
-            <input
-              name="clientPostCode"
-              value={formData.clientPostCode}
-              onChange={handleInputChange}
-              className="border   bg-white p-2 rounded"
-              type="text"
-              placeholder="Post Code"
-            />
-            <input
-              name="clientCountry"
-              value={formData.clientCountry}
-              onChange={handleInputChange}
-              className="border p-2  bg-white rounded"
-              type="text"
-              placeholder="Country"
-            />
-          </div>
-        </section>
-
-        {/* Date Inputs */}
-        <div className="flex justify-between mt-[20px]">
-          <div className="mb-[10px]">
-            <label className="block text-[12px] font-medium text-[#7E88C3] mb-[10px]">
-              Created At
-            </label>
-            <input
-              type="date"
-              className="w-full border p-2 rounded bg-white text-[#0C0E16]"
-              name="createdAt"
-              value={formData.createdAt}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="mb-[10px]">
-            <label className="block text-[12px] font-medium text-[#7E88C3] mb-[10px]">
-              Payment Due
-            </label>
-            <input
-              type="date"
-              className="w-full border p-2 rounded bg-white text-[#0C0E16]"
-              name="paymentDue"
-              value={formData.paymentDue}
-              onChange={handleInputChange}
-            />
-          </div>
+          {/* Additional client input fields */}
         </div>
 
         {/* Item List */}
@@ -279,7 +229,7 @@ function SaveInfo({ onClose }) {
           {items.length > 0 && (
             <div className="space-y-2">
               {items.map((item, index) => {
-                const totalAmount = item.qty * item.price;
+                const totalAmount = item.qty * item.price; // Calculate the total here
                 return (
                   <div
                     key={index}
@@ -292,7 +242,7 @@ function SaveInfo({ onClose }) {
             </div>
           )}
           <div className="bg-white text-black p-2 rounded mb-[10px]">
-            Total: ${calculateTotalAmount()}
+            Total: ${calculateTotalAmount()} {/* Total amount of all items */}
           </div>
           <button onClick={addItem} className="btn btn-primary block">
             Add Item
@@ -308,21 +258,16 @@ function SaveInfo({ onClose }) {
             Cancel
           </button>
           <button
-            onClick={() => handleSave("draft")}
-            className="bg-blue-500 text-white p-2 rounded"
-          >
-            Save as Draft
-          </button>
-          <button
             onClick={() => handleSave("pending")}
             className="bg-green-500 text-white p-2 rounded"
           >
-            Save & Send
+            Save Changes
           </button>
         </div>
       </div>
     </div>
   );
 }
+// salom
 
-export default SaveInfo;
+export default EditInfo;
