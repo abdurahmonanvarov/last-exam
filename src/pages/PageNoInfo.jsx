@@ -1,8 +1,10 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import NoteInfo from "/public/notinfo.png";
+import { useTheme } from "../context/ThemeContext";
 
 function PageNoInfo() {
+  const { theme } = useTheme();
   return (
     <div>
       <Navbar />
@@ -17,12 +19,26 @@ function PageNoInfo() {
         </div>
 
         {/* Matn qismi */}
-        <h2 className="text-xl font-bold text-gray-800">
+        <h2
+          className={`text-xl font-bold ${
+            theme == "dark" ? "text-gray-800" : "text-white"
+          }`}
+        >
           There is nothing here
         </h2>
-        <p className="text-gray-500 text-center max-w-md mt-2">
+        <p
+          className={` ${
+            theme == "dark" ? "text-gray-800" : "text-white"
+          } text-center max-w-md mt-2`}
+        >
           Create an invoice by clicking the{" "}
-          <span className="font-semibold text-gray-700">New Invoice</span>{" "}
+          <span
+            className={`font-semibold  ${
+              theme == "dark" ? "text-gray-800" : "text-white"
+            }`}
+          >
+            New Invoice
+          </span>{" "}
           button and get started.
         </p>
       </div>

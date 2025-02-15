@@ -3,11 +3,13 @@ import { SlArrowRight } from "react-icons/sl";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 function Home() {
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,10 +44,16 @@ function Home() {
               <Link
                 to={`/singleproducts/${datam.id}`}
                 key={datam.id}
-                className="bg-white w-full pl-[32px] pr-[32px] pt-[29px] pb-[28px] rounded-[8px] flex items-center justify-between cursor-pointer hover:shadow-2xl transition duration-300"
+                className={`${
+                  theme == "dark" ? "bg-white" : "bg-[#1E2139]"
+                } w-full pl-[32px] pr-[32px] pt-[29px] pb-[28px] rounded-[8px] flex items-center justify-between cursor-pointer hover:shadow-2xl transition duration-300`}
               >
-                <h3 className="text-[#0C0E16] text-[12px] font-bold w-[100px] truncate">
-                  #{datam.id}
+                <h3
+                  className={`${
+                    theme == "dark" ? "text-[#0C0E16]" : "text-white"
+                  } text-[12px] font-bold w-[100px] truncate"`}
+                >
+                  #{datam.id.slice(0, 5)}
                 </h3>
 
                 <p className="text-[#888EB0] text-[12px] w-[150px] truncate">
@@ -56,7 +64,11 @@ function Home() {
                   {datam.clientName}
                 </h3>
 
-                <span className="text-[#0C0E16] text-[16px] w-[120px] font-bold truncate">
+                <span
+                  className={`${
+                    theme == "dark" ? "text-[#0C0E16]" : "text-white"
+                  } text-[12px] font-bold w-[100px] truncate"`}
+                >
                   {datam.items.length > 0 ? datam.items[0].price : "N/A"}$
                 </span>
 

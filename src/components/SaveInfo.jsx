@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid"; // Import the UUID function
 import { toast } from "react-toastify";
+import { useTheme } from "../context/ThemeContext";
 
 function SaveInfo({ onClose }) {
   const [items, setItems] = useState([]);
@@ -18,9 +19,8 @@ function SaveInfo({ onClose }) {
     clientCountry: " ",
     createdAt: "",
     paymentDue: "",
-    clientPhone: "", // New field
-    clientCompany: "", // New field
   });
+  const { theme } = useTheme();
 
   const [newItem, setNewItem] = useState({ name: "", qty: 1, price: 0 });
 
@@ -122,200 +122,188 @@ function SaveInfo({ onClose }) {
     }
   };
 
+  const dark = theme === "dark";
+
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-start left-[109px] items-center z-50">
-      <div className="max-w-3xl bg-white shadow-lg rounded-tr-[20px] w-[616px] rounded-br-[20px] p-[56px] relative overflow-y-auto h-[740px]">
-        <h2 className="text-[24px] font-bold mb-[48px] text-[#7E88C3]">
+      <div
+        className={`max-w-3xl shadow-lg rounded-tr-[20px] w-[616px] rounded-br-[20px] p-[56px] relative overflow-y-auto h-[740px] ${
+          dark ? "  bg-white text-[#0C0E16]" : "bg-[#141625] text-white"
+        }`}
+      >
+        <h2
+          className={`text-[24px] font-bold mb-[48px] ${
+            dark ? "text-[#7E88C3]" : "text-white"
+          }`}
+        >
           New Invoice
         </h2>
 
         <section className="mb-6">
-          <h2 className="text-[12px] font-semibold text-[#7E88C3]">
+          <h2
+            className={`text-[12px] font-semibold  ${
+              dark ? "text-[#7E88C3]" : "text-white"
+            }`}
+          >
             Bill From
           </h2>
-
           <input
             name="street"
             value={formData.street}
             onChange={handleInputChange}
-            className="w-full  bg-white border p-2 rounded mt-2"
+            className={`w-full border p-2 rounded mt-2 ${
+              dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
+            }`}
             type="text"
             placeholder="Street Address"
           />
           <div className="grid grid-cols-3 gap-4 mt-2">
-            <input
-              name="city"
-              value={formData.city}
-              onChange={handleInputChange}
-              className="border  bg-white p-2 rounded"
-              type="text"
-              placeholder="City"
-            />
-            <input
-              name="postCode"
-              value={formData.postCode}
-              onChange={handleInputChange}
-              className="border  bg-white p-2 rounded"
-              type="text"
-              placeholder="Post Code"
-            />
-            <input
-              name="country"
-              value={formData.country}
-              onChange={handleInputChange}
-              className="border  bg-white p-2 rounded"
-              type="text"
-              placeholder="Country"
-            />
+            {["city", "postCode", "country"].map((field) => (
+              <input
+                key={field}
+                name={field}
+                value={formData[field]}
+                onChange={handleInputChange}
+                className={`border p-2 rounded ${
+                  dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
+                }`}
+                type="text"
+                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+              />
+            ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-[12px] font-semibold  text-[#7E88C3]">Bill To</h2>
-          <input
-            name="clientName"
-            value={formData.clientName}
-            onChange={handleInputChange}
-            className="w-full border  bg-white p-2 rounded mt-2"
-            type="text"
-            placeholder="Client’s Name"
-          />
-          <input
-            name="clientEmail"
-            value={formData.clientEmail}
-            onChange={handleInputChange}
-            className="w-full  bg-white border p-2 rounded mt-2"
-            type="email"
-            placeholder="e.g. email@example.com"
-          />
-          <input
-            name="clientStreet"
-            value={formData.clientStreet}
-            onChange={handleInputChange}
-            className="w-full  bg-white border p-2 rounded mt-2"
-            type="text"
-            placeholder="Street Address"
-          />
+          <h2
+            className={`text-[12px] font-semibold  ${
+              dark ? "text-[#7E88C3]" : "text-white"
+            }`}
+          >
+            Bill To
+          </h2>
+          {["clientName", "clientEmail", "clientStreet"].map((field) => (
+            <input
+              key={field}
+              name={field}
+              value={formData[field]}
+              onChange={handleInputChange}
+              className={`w-full border p-2 rounded mt-2 ${
+                dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
+              }`}
+              type={field === "clientEmail" ? "email" : "text"}
+              placeholder={field
+                .replace("client", "")
+                .replace(/([A-Z])/g, " $1")}
+            />
+          ))}
           <div className="grid grid-cols-3 gap-4 mt-2">
-            <input
-              name="clientCity"
-              value={formData.clientCity}
-              onChange={handleInputChange}
-              className="border  bg-white p-2 rounded"
-              type="text"
-              placeholder="City"
-            />
-            <input
-              name="clientPostCode"
-              value={formData.clientPostCode}
-              onChange={handleInputChange}
-              className="border   bg-white p-2 rounded"
-              type="text"
-              placeholder="Post Code"
-            />
-            <input
-              name="clientCountry"
-              value={formData.clientCountry}
-              onChange={handleInputChange}
-              className="border p-2  bg-white rounded"
-              type="text"
-              placeholder="Country"
-            />
+            {["clientCity", "clientPostCode", "clientCountry"].map((field) => (
+              <input
+                key={field}
+                name={field}
+                value={formData[field]}
+                onChange={handleInputChange}
+                className={`border p-2 rounded ${
+                  dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
+                }`}
+                type="text"
+                placeholder={field
+                  .replace("client", "")
+                  .replace(/([A-Z])/g, " $1")}
+              />
+            ))}
           </div>
         </section>
 
         {/* Date Inputs */}
         <div className="flex justify-between mt-[20px]">
-          <div className="mb-[10px]">
-            <label className="block text-[12px] font-medium text-[#7E88C3] mb-[10px]">
-              Created At
-            </label>
-            <input
-              type="date"
-              className="w-full border p-2 rounded bg-white text-[#0C0E16]"
-              name="createdAt"
-              value={formData.createdAt}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="mb-[10px]">
-            <label className="block text-[12px] font-medium text-[#7E88C3] mb-[10px]">
-              Payment Due
-            </label>
-            <input
-              type="date"
-              className="w-full border p-2 rounded bg-white text-[#0C0E16]"
-              name="paymentDue"
-              value={formData.paymentDue}
-              onChange={handleInputChange}
-            />
-          </div>
+          {["createdAt", "paymentDue"].map((field) => (
+            <div key={field} className="mb-[10px]">
+              <label className="block text-[12px] font-medium text-[#7E88C3] mb-[10px]">
+                {field.replace(/([A-Z])/g, " $1")}
+              </label>
+              <input
+                type="date"
+                className={`w-full border p-2 rounded ${
+                  dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
+                }`}
+                name={field}
+                value={formData[field]}
+                onChange={handleInputChange}
+              />
+            </div>
+          ))}
         </div>
 
         {/* Item List */}
         <h3 className="text-xl font-semibold mt-6 text-[#7E88C3]">Item List</h3>
         <div className="grid grid-cols-4 gap-4 mb-4">
-          <input
-            className="border p-2 rounded bg-white text-[#0C0E16] mb-[10px]"
-            name="name"
-            value={newItem.name}
-            placeholder="Item Name"
-            onChange={handleItemChange}
-          />
-          <input
-            className="border p-2 rounded bg-white text-[#0C0E16] mb-[10px]"
-            type="number"
-            name="qty"
-            value={newItem.qty}
-            onChange={handleItemChange}
-          />
-          <input
-            className="border p-2 rounded bg-white text-[#0C0E16] mb-[10px]"
-            type="number"
-            name="price"
-            value={newItem.price}
-            onChange={handleItemChange}
-          />
-          {items.length > 0 && (
-            <div className="space-y-2">
-              {items.map((item, index) => {
-                const totalAmount = item.qty * item.price;
-                return (
-                  <div
-                    key={index}
-                    className="grid grid-cols-4 gap-4 items-center border p-2 rounded mb-2"
-                  >
-                    <span>${totalAmount}</span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-          <div className="bg-white text-black p-2 rounded mb-[10px]">
-            Total: ${calculateTotalAmount()}
-          </div>
-          <button onClick={addItem} className="btn btn-primary block">
-            Add Item
-          </button>
+          {["name", "qty", "price"].map((field) => (
+            <input
+              key={field}
+              className={`border p-2 rounded mb-[10px] ${
+                dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
+              }`}
+              name={field}
+              value={newItem[field]}
+              onChange={handleItemChange}
+              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+              type={field === "name" ? "text" : "number"}
+            />
+          ))}
         </div>
+
+        {items.length > 0 && (
+          <div className="space-y-2">
+            {items.map((item, index) => (
+              <div
+                key={index}
+                className={`grid grid-cols-4 gap-4 items-center border p-2 rounded mb-2 ${
+                  dark ? "bg-white text-[#0C0E16] " : " bg-[#252945] text-white"
+                }`}
+              >
+                <span>${item.qty * item.price}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div
+          className={`p-2 rounded mb-[10px] ${
+            dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
+          }`}
+        >
+          Total: ${calculateTotalAmount()}
+        </div>
+
+        <button onClick={addItem} className="btn btn-primary block">
+          Add Item
+        </button>
 
         {/* Action buttons */}
         <div className="flex justify-end gap-4 mt-6">
           <button
             onClick={onClose}
-            className="border p-2 rounded text-[#0C0E16]"
+            className={`border p-2 rounded ${
+              dark ? "text-[#0C0E16] bg-white" : "  text-white bg-[#252945]"
+            }`}
           >
             Cancel
           </button>
           <button
             onClick={() => handleSave("draft")}
-            className="bg-blue-500 text-white p-2 rounded"
+            className={`p-2 rounded ${
+              dark ? "bg-blue-500 text-white " : " bg-[#7C5DFA] text-white"
+            }`}
           >
             Save as Draft
           </button>
           <button
             onClick={() => handleSave("pending")}
-            className="bg-green-500 text-white p-2 rounded"
+            className={`p-2 rounded ${
+              dark ? "bg-green-500 text-white" : "  bg-[#33D69F] text-white"
+            }`}
           >
             Save & Send
           </button>

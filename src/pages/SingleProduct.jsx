@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify"; // Import toastify for notifications
 import "react-toastify/dist/ReactToastify.css"; // Import styles
 import EditInvoice from "../components/EditInvoice";
+import { useTheme } from "../context/ThemeContext";
 
 function SingleProduct() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,7 @@ function SingleProduct() {
   const [productData, setProductData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { theme } = useTheme();
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -97,15 +99,28 @@ function SingleProduct() {
       <div className="mt-[64px] mb-[24px] w-[730px] h-[135px]">
         <Link
           to="/"
-          className="text-blue-600 flex items-center mb-[32px] text-[12px] gap-[23px]"
+          className={`text-blue-600 flex items-center mb-[32px] ${
+            theme == "dark" ? "text-black" : "text-white"
+          } text-[12px] gap-[23px]`}
         >
           &larr; Go back
         </Link>
 
         {/* Status & Buttons */}
-        <div className="flex justify-between items-center bg-white p-4 rounded-[8px] pr-[32px] pl-[32px] pt-[20px] pb-[20px]">
+        <div
+          className={`flex justify-between items-center ${
+            theme == "dark" ? "bg-white" : "bg-[#1E2139]"
+          }  p-4 rounded-[8px] pr-[32px] pl-[32px] pt-[20px] pb-[20px]`}
+        >
           <span className="text-gray-700 font-medium flex items-center gap-[16px]">
-            <span className="text-[12px] text-[#858BB2]"> Status</span>
+            <span
+              className={`text-[12px] ${
+                theme == "dark" ? "text-[#858BB2]" : "text-white"
+              } `}
+            >
+              {" "}
+              Status
+            </span>
             <span
               className={`flex gap-[8px] items-center w-[120px] rounded-[6px] h-[40px] pl-[18px] pr-[18px] ${
                 productData?.status === "paid"
@@ -146,11 +161,21 @@ function SingleProduct() {
         </div>
       </div>
 
-      <div className="rounded-xl shadow-lg p-[48px] w-full max-w-[730px] overflow-y-auto h-[460px] bg-white">
+      <div
+        className={`rounded-xl shadow-lg p-[48px] w-full max-w-[730px] overflow-y-auto h-[460px]   ${
+          theme == "dark" ? "bg-white" : "bg-[#1E2139]"
+        }`}
+      >
         {/* Invoice Details */}
         <div className="flex justify-between mb-[21px]">
           <div>
-            <h2 className="text-[16px] font-bold">#{productData?.id}</h2>
+            <h2
+              className={` ${
+                theme == "dark" ? " text-black" : "text-white"
+              } text-[16px] font-bold`}
+            >
+              #{productData?.id}
+            </h2>
             <p className="text-[#7E88C3] text-[12px]">
               {productData?.category || "Graphic Design"}
             </p>
@@ -173,17 +198,29 @@ function SingleProduct() {
         <div className="grid grid-cols-3 gap-[100px] mb-[45px]">
           <div>
             <p className="text-[#7E88C3] text-[12px]">Invoice Date</p>
-            <p className="font-bold text-[#0C0E16] text-[15px]">
+            <p
+              className={`font-bold ${
+                theme == "dark" ? "text-[#0C0E16]" : "text-white"
+              }  text-[15px]`}
+            >
               {productData?.createdAt}
             </p>
             <p className="text-[#7E88C3] mt-[20px] text-[12px]">Payment Due</p>
-            <p className="font-bold text-[#0C0E16] text-[15px]">
+            <p
+              className={`font-bold ${
+                theme == "dark" ? "text-[#0C0E16]" : "text-white"
+              }  text-[15px]`}
+            >
               {productData?.paymentDue}
             </p>
           </div>
           <div>
             <p className="text-[#7E88C3] text-[12px]">Bill To</p>
-            <p className="font-bold text-[#0C0E16] text-[15px] mb-[12px] mt-[12px]">
+            <p
+              className={`font-bold ${
+                theme == "dark" ? "text-[#0C0E16]" : "text-white"
+              }  text-[15px] mb-[12px] mt-[12px]`}
+            >
               {productData.clientName}
             </p>
             <p className="text-[#7E88C3] text-[12px]">
@@ -195,14 +232,22 @@ function SingleProduct() {
           </div>
           <div>
             <p className="text-[#7E88C3] text-[12px]">Sent to</p>
-            <p className="font-bold text-[#0C0E16] text-[15px]">
+            <p
+              className={`font-bold ${
+                theme == "dark" ? "text-[#0C0E16]" : "text-white"
+              } text-[15px]`}
+            >
               {productData?.clientEmail}
             </p>
           </div>
         </div>
         {/* Invoice Items */}
-        <div className="bg-gray-50 p-4 rounded-lg mt-6">
-          <div className="flex justify-between py-2 font-bold border-b pb-2">
+        <div
+          className={`${
+            theme == "dark" ? "bg-white" : "bg-[#1E2139]"
+          } p-4 rounded-lg mt-6`}
+        >
+          <div className="flex justify-between py-2 font-bold  pb-2">
             <span className="w-1/4 text-[11px]">Item Name</span>
             <span className="w-1/4 text-center text-[11px]">QTY.</span>
             <span className="w-1/4 text-center text-[11px]">Price</span>
@@ -213,15 +258,23 @@ function SingleProduct() {
             ...(productData?.items || []),
             ...(productData?.setItems || []),
           ].map((item, index) => (
-            <div className="flex justify-between py-2 border-b" key={index}>
-              <span className="w-1/4 text-[#0C0E16] font-bold">
+            <div className="flex justify-between py-2 " key={index}>
+              <span
+                className={`w-1/4 ${
+                  theme == "dark" ? "text-[#0C0E16]" : "text-white"
+                } font-bold`}
+              >
                 {item.name}
               </span>
               <span className="w-1/4 text-center font-bold">
                 {item.quantity}
               </span>
               <span className="w-1/4 text-center font-bold">{item.price}$</span>
-              <span className="w-1/4 text-right text-[#0C0E16] font-bold">
+              <span
+                className={`w-1/4 text-right ${
+                  theme == "dark" ? "text-[#0C0E16]" : "text-white"
+                }  font-bold`}
+              >
                 {item.total}$
               </span>
             </div>
