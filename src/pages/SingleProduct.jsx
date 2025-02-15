@@ -4,9 +4,11 @@ import DeletModal from "../components/DeletModal";
 import axios from "axios";
 import { toast } from "react-toastify"; // Import toastify for notifications
 import "react-toastify/dist/ReactToastify.css"; // Import styles
+import EditInvoice from "../components/EditInvoice";
 
 function SingleProduct() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
   const { id } = useParams();
   const [productData, setProductData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,6 +20,13 @@ function SingleProduct() {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+  };
+  const handleOpenModalEdit = () => {
+    setIsOpenEdit(true);
+  };
+
+  const handleCloseModalEdit = () => {
+    setIsOpenEdit(false);
   };
 
   //malumotni olish
@@ -80,6 +89,11 @@ function SingleProduct() {
   return (
     <div>
       <DeletModal isOpen={isOpen} handleCloseModal={handleCloseModal} id={id} />
+      <EditInvoice
+        isOpenEdit={isOpenEdit}
+        handleCloseModalEdit={handleCloseModalEdit}
+        id={id}
+      />
       <div className="mt-[64px] mb-[24px] w-[730px] h-[135px]">
         <Link
           to="/"
@@ -110,7 +124,10 @@ function SingleProduct() {
             </span>
           </span>
           <div className="flex items-center gap-[8px]">
-            <button className="bg-gray-300 text-[#7E88C3] py-[16px] px-[23px] rounded-[25px] hover:bg-gray-400 transition">
+            <button
+              onClick={handleOpenModalEdit}
+              className="bg-gray-300 text-[#7E88C3] py-[16px] px-[23px] rounded-[25px] hover:bg-gray-400 transition"
+            >
               Edit
             </button>
             <button

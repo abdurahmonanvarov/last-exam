@@ -49,7 +49,6 @@ function SaveInfo({ onClose }) {
 
   const validateForm = () => {
     const fields = [
-      "streetAddress",
       "city",
       "postCode",
       "country",
@@ -136,6 +135,7 @@ function SaveInfo({ onClose }) {
           </h2>
 
           <input
+            name="street"
             value={formData.street}
             onChange={handleInputChange}
             className="w-full  bg-white border p-2 rounded mt-2"

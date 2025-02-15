@@ -21,14 +21,7 @@
         "postCode": "NR24 5WQ",
         "country": "United Kingdom"
       },
-      "items": [
-        {
-          "name": "Brand Guidelines",
-          "quantity": 1,
-          "price": 1800.9,
-          "total": 1800.9
-        }
-      ],
+      "items": [],
       "total": 1800.9
     },
     {
@@ -424,40 +417,59 @@
       "total": 2500
     },
     {
-      "id": "f991d12f-6b0c-49ec-9320-4ab00e135a46",
-      "paymentDue": "2025-02-14",
+      "id": "110a993c-4eae-4745-bb4a-8ca9ae4a9ddb",
+      "createdAt": "5515-04-05",
+      "paymentDue": "4366-05-04",
       "description": "Re-branding",
       "paymentTerms": 1,
-      "clientName": "acramov husan",
-      "clientEmail": "husan@mail.com",
-      "status": "pending",
+      "clientName": " husan",
+      "clientEmail": "anvar@gmail.com",
+      "status": "paid",
       "senderAddress": {
-        "street": "4 Acbarabod Fergana",
-        "city": "Fergana",
-        "postCode": "HGH787",
-        "country": "Uzb"
+        "street": "",
+        "city": "Fargona",
+        "postCode": " GGB78887",
+        "country": " wiidfiewfdwef"
       },
       "clientAddress": {
-        "street": "84 Church Way",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
+        "street": "19 Union Terra",
+        "city": "fargiona",
+        "postCode": "BD1 09890",
+        "country": "Uzbekistan"
       },
       "items": [
         {
-          "name": "Iphone 16",
+          "name": "Email Design",
           "quantity": 1,
-          "price": "15000",
-          "total": 15000
-        },
-        {
-          "name": "Solo",
-          "quantity": 1,
-          "price": "15000",
-          "total": 15000
+          "price": "1000",
+          "total": 1000
         }
       ],
-      "total": 30000
+      "total": 1000
+    },
+    {
+      "id": "d7d26e73-08e5-418a-9cf6-c89449e87839",
+      "createdAt": "84568-08-07",
+      "paymentDue": "7897-05-08",
+      "description": "Re-branding",
+      "paymentTerms": 1,
+      "clientName": "Omad",
+      "clientEmail": "dousolo9@mail.com",
+      "status": "draft",
+      "senderAddress": {
+        "street": "",
+        "city": "Fergana",
+        "postCode": " GGB78887",
+        "country": " wiidfiewfdwef"
+      },
+      "clientAddress": {
+        "street": "86 klabswdh",
+        "city": "Fergana",
+        "postCode": " sqsqsqsqzxqs",
+        "country": " qsqsqsqsxqsqsq"
+      },
+      "items": [],
+      "total": 900
     }
   ]
 }
