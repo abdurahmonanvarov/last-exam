@@ -7,7 +7,7 @@ function MainLoyout() {
   const { theme } = useTheme();
   return (
     <div
-      className={`flex gap-[355px] min-h-screen ${
+      className={` flex gap-[355px] min-h-screen ${
         theme === "dark" ? "bg-white" : "bg-[#0C0E16]"
       }`}
     >

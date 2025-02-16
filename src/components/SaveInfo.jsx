@@ -114,13 +114,15 @@ function SaveInfo({ onClose }) {
 
     try {
       await axios.post("http://localhost:3000/treap", invoiceData);
-      toast.success("Success: Invoice saved!");
-      onClose();
+
       window.location.reload();
+
+      onClose();
     } catch (error) {
       console.error("Error saving invoice:", error);
       alert("Error: Could not save the invoice.");
     }
+    toast.success("Success: Invoice saved!");
   };
 
   const dark = theme === "dark";
@@ -230,7 +232,7 @@ function SaveInfo({ onClose }) {
           </h2>
 
           {/* Name */}
-          <span className="text-[12px]">Name</span>
+          <span className="text-[12px]">Client name</span>
           <input
             name="clientName"
             value={formData.clientName}
@@ -243,7 +245,7 @@ function SaveInfo({ onClose }) {
           />
 
           {/* Email */}
-          <span className="text-[12px] mt-2">Email</span>
+          <span className="text-[12px] mt-2">Client email</span>
           <input
             name="clientEmail"
             value={formData.clientEmail}
@@ -256,7 +258,7 @@ function SaveInfo({ onClose }) {
           />
 
           {/* Address */}
-          <span className="text-[12px] mt-2">Address</span>
+          <span className="text-[12px] mt-2">Client address</span>
           <input
             name="clientStreet"
             value={formData.clientStreet}
@@ -375,8 +377,8 @@ function SaveInfo({ onClose }) {
           Total: ${calculateTotalAmount()}
         </div>
 
-        <button onClick={addItem} className="btn btn-primary block">
-          Add Item
+        <button onClick={addItem} className="btn btn-primary block w-full">
+          Add Item and Colculate
         </button>
 
         {/* Action buttons */}

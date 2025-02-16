@@ -1,12 +1,20 @@
 import React from "react";
 import IconsHeader from "/public/icon.png";
 import ThemeToggle from "./ThemeToggle";
+import { useTheme } from "../context/ThemeContext";
 
 function SaitBar() {
+  const { theme } = useTheme();
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div
+      className={`flex min-h-screen 0 ${
+        theme ? "bg-[#141625]" : "bg-gray-100"
+      }`}
+    >
       {" "}
-      <aside className="w-[103px] bg-gray-900 text-white flex flex-col items-center py-6 rounded-tr-[20px] rounded-br-[20px]">
+      <aside
+        className={`w-[103px] bg-gray-900  flex flex-col items-center py-6 rounded-tr-[20px] text-white rounded-br-[20px]`}
+      >
         <div className="bg-primary p-3 w-[103px] h-[103px] top-0 absolute rounded-tr-[20px]">
           <span className="absolute left-[32px] top-[33.29px] cursor-pointer">
             <img
