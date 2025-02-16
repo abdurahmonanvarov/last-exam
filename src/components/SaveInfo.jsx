@@ -116,6 +116,7 @@ function SaveInfo({ onClose }) {
       await axios.post("http://localhost:3000/treap", invoiceData);
       toast.success("Success: Invoice saved!");
       onClose();
+      window.location.reload();
     } catch (error) {
       console.error("Error saving invoice:", error);
       alert("Error: Could not save the invoice.");

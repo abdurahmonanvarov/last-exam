@@ -14,7 +14,7 @@ export default function ThemeToggle() {
 
       {/* Sun icon (Light mode) */}
       <svg
-        className="swap-on w-[20px] h-[20px] fill-current text-yellow-500"
+        className="swap-on w-[20px] h-[20px] fill-current "
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >

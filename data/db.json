@@ -21,8 +21,52 @@
         "postCode": "NR24 5WQ",
         "country": "United Kingdom"
       },
-      "items": [],
+      "items": [
+        {
+          "name": "Brand Guidelines",
+          "quantity": 1,
+          "price": 1800.9,
+          "total": 1800.9
+        }
+      ],
       "total": 1800.9
+    },
+    {
+      "id": "XM9141",
+      "createdAt": "2021-08-21",
+      "paymentDue": "2021-09-20",
+      "description": "Graphic Design",
+      "paymentTerms": 30,
+      "clientName": "Alex Grim",
+      "clientEmail": "alexgrim@mail.com",
+      "status": "pending",
+      "senderAddress": {
+        "street": "19 Union Terrace",
+        "city": "London",
+        "postCode": "E1 3EZ",
+        "country": "United Kingdom"
+      },
+      "clientAddress": {
+        "street": "84 Church Way",
+        "city": "Bradford",
+        "postCode": "BD1 9PB",
+        "country": "United Kingdom"
+      },
+      "items": [
+        {
+          "name": "Banner Design",
+          "quantity": 1,
+          "price": 156.0,
+          "total": 156.0
+        },
+        {
+          "name": "Email Design",
+          "quantity": 2,
+          "price": 200.0,
+          "total": 400.0
+        }
+      ],
+      "total": 556.0
     },
     {
       "id": "RG0314",
@@ -117,8 +161,8 @@
         {
           "name": "Brand Guidelines",
           "quantity": 1,
-          "price": 2500,
-          "total": 2500
+          "price": 2500.0,
+          "total": 2500.0
         }
       ],
       "total": 4032.33
@@ -184,329 +228,6 @@
         }
       ],
       "total": 3102.04
-    },
-    {
-      "id": "b5c61941-e1ee-4f68-b730-8f3f0b189b59",
-      "createdAt": "2025-02-14T05:30:43.471Z",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": "Alex Grimsgbsntg",
-      "clientEmail": "alexgrimrsjnsgn@mail.com",
-      "status": "paid",
-      "senderAddress": {
-        "street": "kmjtheabhqw4n",
-        "city": "Bradhnrwssrford",
-        "postCode": "BD1 9PBnrsnws",
-        "country": "United Kingdrsrnrsnom"
-      },
-      "clientAddress": {
-        "street": "84 Chsnsgngsurch Way",
-        "city": "Bradfonsrtnsrrd",
-        "postCode": "BD1 9nsnggsgPB",
-        "country": "United Ksngsgsingdom"
-      },
-      "items": [],
-      "total": 0
-    },
-    {
-      "id": "03118cd9-8947-4dd4-b523-fb0a2d72868e",
-      "paymentDue": "2025-02-14T05:47:31.502Z",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": "Alex Grim",
-      "clientEmail": "alexgrim@mail.com",
-      "status": "pending",
-      "senderAddress": {
-        "street": "19 Union Terrace",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "clientAddress": {
-        "street": "84 Church Way",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "items": []
-    },
-    {
-      "id": "45371c4d-f25d-4377-b83e-13ec517d77c2",
-      "paymentDue": "2025-02-14T05:47:43.985Z",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": "Alex Grim",
-      "clientEmail": "alexgrim@mail.com",
-      "status": "paid",
-      "senderAddress": {
-        "street": "19 Union Terrace",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "clientAddress": {
-        "street": "84 Church Way",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "items": []
-    },
-    {
-      "id": "6a6d215e-1a66-4732-8819-c912aa6ab7a0",
-      "paymentDue": "2025-02-14",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": "Alex Grim",
-      "clientEmail": "alexgrim@mail.com",
-      "status": "draft",
-      "senderAddress": {
-        "street": "19 Union Terrace",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "clientAddress": {
-        "street": "84 Church Way",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "items": []
-    },
-    {
-      "id": "5e903430-3780-4f46-ae1f-4bcbaf0b6fab",
-      "paymentDue": "2025-02-14",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": "Alex Grim",
-      "clientEmail": "alexgrim@mail.com",
-      "status": "pending",
-      "senderAddress": {
-        "street": "abdurahmon",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "clientAddress": {
-        "street": "84 Church Way",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "items": []
-    },
-    {
-      "id": "59aba363-578f-48fc-8577-bc35222578a5",
-      "paymentDue": "2025-02-14",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": "Alex Grim",
-      "clientEmail": "alexgrim@mail.com",
-      "status": "pending",
-      "senderAddress": {
-        "street": "19 Union Terrace",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "clientAddress": {
-        "street": "84 Church Way",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "items": [
-        {
-          "name": "gaz plita",
-          "quantity": "12",
-          "price": "12",
-          "total": 144
-        }
-      ],
-      "total": 144
-    },
-    {
-      "id": "a6bfb7b6-c381-40c3-9485-1a9f0a351902",
-      "paymentDue": "2025-02-14",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": "Alex Grim",
-      "clientEmail": "alexgrim@mail.com",
-      "status": "draft",
-      "senderAddress": {
-        "street": "19 Union Terrace",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "clientAddress": {
-        "street": "84 Church Way",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "items": [
-        {
-          "name": "gaz plita",
-          "quantity": "12",
-          "price": "12345",
-          "total": 148140
-        }
-      ],
-      "total": 148140
-    },
-    {
-      "id": "2030ae8d-12c0-4805-82fd-23c987f8f30b",
-      "paymentDue": "2025-02-14",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": "Alex Grim",
-      "clientEmail": "alexgrim@mail.com",
-      "status": "paid",
-      "senderAddress": {
-        "street": "fghwqethwrt",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "clientAddress": {
-        "street": "84 Church Way",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "items": [
-        {
-          "name": "Abu",
-          "quantity": "12",
-          "price": "212",
-          "total": 2544
-        }
-      ],
-      "total": 2544
-    },
-    {
-      "id": "d529a924-e84d-4742-b729-069ebbec9bae",
-      "paymentDue": "2025-02-14",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": "Alex Grim",
-      "clientEmail": "alexgrim@mail.com",
-      "status": "paid",
-      "senderAddress": {
-        "street": "19 Union Terrace",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "clientAddress": {
-        "street": "84 Church Way",
-        "city": "Bradford",
-        "postCode": "BD1 9PB",
-        "country": "United Kingdom"
-      },
-      "items": [
-        {
-          "name": "alo",
-          "quantity": "5",
-          "price": "500",
-          "total": 2500
-        }
-      ],
-      "total": 2500
-    },
-    {
-      "id": "110a993c-4eae-4745-bb4a-8ca9ae4a9ddb",
-      "createdAt": "5515-04-05",
-      "paymentDue": "4366-05-04",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": " husan",
-      "clientEmail": "anvar@gmail.com",
-      "status": "paid",
-      "senderAddress": {
-        "street": "",
-        "city": "Fargona",
-        "postCode": " GGB78887",
-        "country": " wiidfiewfdwef"
-      },
-      "clientAddress": {
-        "street": "19 Union Terra",
-        "city": "fargiona",
-        "postCode": "BD1 09890",
-        "country": "Uzbekistan"
-      },
-      "items": [
-        {
-          "name": "Email Design",
-          "quantity": 1,
-          "price": "1000",
-          "total": 1000
-        }
-      ],
-      "total": 1000
-    },
-    {
-      "id": "d7d26e73-08e5-418a-9cf6-c89449e87839",
-      "createdAt": "84568-08-07",
-      "paymentDue": "7897-05-08",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": "Omad",
-      "clientEmail": "dousolo9@mail.com",
-      "status": "draft",
-      "senderAddress": {
-        "street": "",
-        "city": "Fergana",
-        "postCode": " GGB78887",
-        "country": " wiidfiewfdwef"
-      },
-      "clientAddress": {
-        "street": "86 klabswdh",
-        "city": "Fergana",
-        "postCode": " sqsqsqsqzxqs",
-        "country": " qsqsqsqsxqsqsq"
-      },
-      "items": [],
-      "total": 900
-    },
-    {
-      "id": "c6e91c44-49e6-4296-a328-2ce76139184c",
-      "createdAt": "4521-04-05",
-      "paymentDue": "44454-04-04",
-      "description": "Re-branding",
-      "paymentTerms": 1,
-      "clientName": " hwe4htj64ejt6",
-      "clientEmail": "ueyje57yj6ey@gmail.com",
-      "status": "pending",
-      "senderAddress": {
-        "street": "",
-        "city": "Fergana",
-        "postCode": " wtyw56y456",
-        "country": " y4yht4h4h6"
-      },
-      "clientAddress": {
-        "street": "  tgj54euyj57y6ik",
-        "city": "Fergana",
-        "postCode": " k6478oiu8rolt89lp5",
-        "country": " ol875lkryo784i7"
-      },
-      "items": [
-        {
-          "name": "Email Design",
-          "quantity": 1,
-          "price": "100",
-          "total": 100
-        },
-        {
-          "name": "eye6yuje",
-          "quantity": 1,
-          "price": "45654",
-          "total": 45654
-        }
-      ],
-      "total": 45754
     }
   ]
 }

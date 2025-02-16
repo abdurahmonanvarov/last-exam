@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useTheme } from "../context/ThemeContext";
 
 function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
   const [invoice, setInvoice] = useState(null);
   const [formData, setFormData] = useState(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (id) {
@@ -47,17 +49,27 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
       .then(() => {
         toast.success("Invoice updated successfully!");
         handleCloseModalEdit(false);
+        window.location.reload();
       })
       .catch((error) => console.error("Error updating invoice:", error));
   };
+
+  const dark = theme == "dark";
 
   return (
     <div>
       {isOpenEdit && formData && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-start left-[109px] items-center z-50">
-          <div className="max-w-3xl bg-white shadow-lg rounded-tr-[20px] w-[616px] rounded-br-[20px] p-[56px] relative overflow-y-auto h-[740px]">
+          <div
+            className={`max-w-3xl w-[616px] shadow-lg rounded-tr-[20px] rounded-br-[20px] p-[56px] relative overflow-y-auto h-[740px] ${
+              dark ? "  bg-white text-black" : "bg-[#141625] text-white"
+            }`}
+          >
             <h2 className="text-[24px] font-bold mb-[24px] text-[#7E88C3]">
-              Edit <span className="text-black">{invoice.id}</span>
+              Edit{" "}
+              <span className={dark ? "text-black" : "text-white "}>
+                {invoice.id}
+              </span>
             </h2>
 
             <section className="mb-6">
@@ -71,7 +83,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                 name="clientName"
                 value={formData.clientName}
                 onChange={handleChange}
-                className="block border p-2 w-full rounded mt-1 bg-gray-100"
+                className={`block border p-2 w-full rounded mt-1 ${
+                  dark
+                    ? "   bg-gray-100"
+                    : "bg-[#1E2139] text-white border-gray-600"
+                }`}
               />
               <div className="grid grid-cols-3 gap-4 mt-2">
                 <div>
@@ -80,7 +96,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                     name="city"
                     value={formData.senderAddress.city}
                     onChange={handleChange}
-                    className="block border w-[150px] p-2 rounded bg-gray-100"
+                    className={`block border p-2 w-full rounded mt-1 ${
+                      dark
+                        ? "   bg-gray-100"
+                        : "bg-[#1E2139] text-white border-gray-600"
+                    }`}
                   />
                 </div>
                 <div>
@@ -91,7 +111,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                     name="postCode"
                     value={formData.senderAddress.postCode}
                     onChange={handleChange}
-                    className="block border p-2 w-[150px]  rounded bg-gray-100"
+                    className={`block border p-2 w-full rounded mt-1 ${
+                      dark
+                        ? "   bg-gray-100"
+                        : "bg-[#1E2139] text-white border-gray-600"
+                    }`}
                   />
                 </div>
                 <div>
@@ -100,7 +124,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                     name="country"
                     value={formData.senderAddress.country}
                     onChange={handleChange}
-                    className="block border p-2 rounded w-[150px]  bg-gray-100"
+                    className={`block border p-2 w-full rounded mt-1 ${
+                      dark
+                        ? "   bg-gray-100"
+                        : "bg-[#1E2139] text-white border-gray-600"
+                    }`}
                   />
                 </div>
               </div>
@@ -117,7 +145,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                 name="clientName"
                 value={formData.clientName}
                 onChange={handleChange}
-                className="block w-full border p-2 rounded mt-1 bg-gray-100"
+                className={`block border p-2 w-full rounded mt-1 ${
+                  dark
+                    ? "   bg-gray-100"
+                    : "bg-[#1E2139] text-white border-gray-600"
+                }`}
               />
               <label className="block text-sm font-semibold mt-2">
                 Client's Email
@@ -126,7 +158,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                 name="clientEmail"
                 value={formData.clientEmail}
                 onChange={handleChange}
-                className="block w-full border p-2 rounded mt-1 bg-gray-100"
+                className={`block border p-2 w-full rounded mt-1 ${
+                  dark
+                    ? "   bg-gray-100"
+                    : "bg-[#1E2139] text-white border-gray-600"
+                }`}
               />
 
               <label className="block text-sm font-semibold mt-2">
@@ -136,7 +172,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                 name="street"
                 value={formData.clientAddress.street}
                 onChange={handleChange}
-                className="block w-full border p-2 rounded mt-1 bg-gray-100"
+                className={`block border p-2 w-full rounded mt-1 ${
+                  dark
+                    ? "   bg-gray-100"
+                    : "bg-[#1E2139] text-white border-gray-600"
+                }`}
               />
               <div className="grid grid-cols-3 gap-4 mt-2">
                 <div>
@@ -145,7 +185,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                     name="city"
                     value={formData.clientAddress.city}
                     onChange={handleChange}
-                    className="block border p-2 w-[150px]  rounded bg-gray-100"
+                    className={`block border p-2 w-full rounded mt-1 ${
+                      dark
+                        ? "   bg-gray-100"
+                        : "bg-[#1E2139] text-white border-gray-600"
+                    }`}
                   />
                 </div>
                 <div>
@@ -156,7 +200,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                     name="postCode"
                     value={formData.clientAddress.postCode}
                     onChange={handleChange}
-                    className="block border p-2 w-[150px]  rounded bg-gray-100"
+                    className={`block border p-2 w-full rounded mt-1 ${
+                      dark
+                        ? "   bg-gray-100"
+                        : "bg-[#1E2139] text-white border-gray-600"
+                    }`}
                   />
                 </div>
                 <div>
@@ -165,7 +213,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                     name="country"
                     value={formData.clientAddress.country}
                     onChange={handleChange}
-                    className="block border p-2 w-[150px]  rounded bg-gray-100"
+                    className={`block border p-2 w-full rounded mt-1 ${
+                      dark
+                        ? "   bg-gray-100"
+                        : "bg-[#1E2139] text-white border-gray-600"
+                    }`}
                   />
                 </div>
               </div>
@@ -181,7 +233,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                   name="createdAt"
                   value={formData.createdAt}
                   onChange={handleChange}
-                  className="block border p-2 rounded bg-gray-100"
+                  className={`block border p-2 w-full rounded mt-1 ${
+                    dark
+                      ? "   bg-gray-100"
+                      : "bg-[#1E2139] text-white border-gray-600"
+                  }`}
                 />
               </div>
               <div>
@@ -192,7 +248,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                   name="paymentDue"
                   value={formData.paymentDue}
                   onChange={handleChange}
-                  className="block border p-2 rounded bg-gray-100"
+                  className={`block border p-2 w-full rounded mt-1 ${
+                    dark
+                      ? "   bg-gray-100"
+                      : "bg-[#1E2139] text-white border-gray-600"
+                  }`}
                 />
               </div>
             </div>
@@ -206,7 +266,11 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                className="block border p-2 rounded bg-gray-100"
+                className={`block border p-2 w-full rounded mt-1 ${
+                  dark
+                    ? "   bg-gray-100"
+                    : "bg-[#1E2139] text-white border-gray-600"
+                }`}
               />
             </div>
 
@@ -224,18 +288,34 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
               (item, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-5 gap-4 items-center border p-2 rounded mb-2"
+                  className="grid grid-cols-5 gap-4 items-center  p-2 rounded mb-2"
                 >
-                  <span className="border p-2 rounded bg-gray-100">
+                  <span
+                    className={`border p-2 rounded ${
+                      dark ? "bg-gray-100" : "bg-[#1E2139] text-white"
+                    }`}
+                  >
                     {item.name}
                   </span>
-                  <span className="border p-2 rounded bg-gray-100">
+                  <span
+                    className={`border p-2 rounded ${
+                      dark ? "bg-gray-100" : "bg-[#1E2139] text-white"
+                    }`}
+                  >
                     {item.quantity}
                   </span>
-                  <span className="border p-2 rounded bg-gray-100">
+                  <span
+                    className={`border p-2 rounded ${
+                      dark ? "bg-gray-100" : "bg-[#1E2139] text-white"
+                    }`}
+                  >
                     {item.price}
                   </span>
-                  <span className="border p-2 rounded bg-gray-100">
+                  <span
+                    className={`border p-2 rounded ${
+                      dark ? "bg-gray-100" : "bg-[#1E2139] text-white"
+                    }`}
+                  >
                     {formData.total}
                   </span>
                   <MdDeleteOutline
@@ -246,15 +326,12 @@ function EditInvoice({ isOpenEdit, handleCloseModalEdit, id }) {
               )
             )}
 
-            {/* Add Item & Action buttons */}
-            <button className="block text-blue-500 text-sm mt-4">
-              + Add New Item
-            </button>
-
             <div className="flex justify-between gap-4 mt-6">
               <button
                 onClick={handleCloseModalEdit}
-                className="border p-2 rounded text-[#0C0E16]"
+                className={`border p-2 rounded ${
+                  dark ? "   text-[#0C0E16]" : "text-white "
+                }`}
               >
                 Cancel
               </button>
