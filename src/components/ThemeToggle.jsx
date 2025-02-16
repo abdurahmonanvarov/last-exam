@@ -1,4 +1,5 @@
 import { useTheme } from "../context/ThemeContext";
+import { BsSun } from "react-icons/bs";
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -13,12 +14,9 @@ export default function ThemeToggle() {
       />
 
       {/* Sun icon (Light mode) */}
-      <svg
-        className="swap-on w-[20px] h-[20px] fill-current "
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-      >
-        <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5Z" />
+
+      <svg className="swap-on  fill-current " viewBox="0 0 24 24">
+        <BsSun className="w-[20px] h-[20px]" />
       </svg>
 
       {/* Moon icon (Dark mode) */}

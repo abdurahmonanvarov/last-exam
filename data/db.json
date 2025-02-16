@@ -56,17 +56,17 @@
         {
           "name": "Banner Design",
           "quantity": 1,
-          "price": 156.0,
-          "total": 156.0
+          "price": 156,
+          "total": 156
         },
         {
           "name": "Email Design",
           "quantity": 2,
-          "price": 200.0,
-          "total": 400.0
+          "price": 200,
+          "total": 400
         }
       ],
-      "total": 556.0
+      "total": 556
     },
     {
       "id": "RG0314",
@@ -161,8 +161,8 @@
         {
           "name": "Brand Guidelines",
           "quantity": 1,
-          "price": 2500.0,
-          "total": 2500.0
+          "price": 2500,
+          "total": 2500
         }
       ],
       "total": 4032.33
@@ -171,7 +171,7 @@
       "id": "TY9141",
       "createdAt": "2021-10-01",
       "paymentDue": "2021-10-31",
-      "description": "Landing Page Design",
+      "description": "Landing Page Designm",
       "paymentTerms": 30,
       "clientName": "Thomas Wayne",
       "clientEmail": "thomas@dc.com",
@@ -228,6 +228,37 @@
         }
       ],
       "total": 3102.04
+    },
+    {
+      "id": "ab4e8a85-7eff-4dbe-9e6d-fa255cf8f094",
+      "createdAt": "4545-12-05",
+      "paymentDue": "275760-05-04",
+      "description": "Re-branding",
+      "paymentTerms": 1,
+      "clientName": " Abu",
+      "clientEmail": "dousolo9@mail.com",
+      "status": "pending",
+      "senderAddress": {
+        "street": "",
+        "city": "Fergana",
+        "postCode": " ",
+        "country": " "
+      },
+      "clientAddress": {
+        "street": "  kdfgviqwhrginae;jkg ergjipqeruignqe",
+        "city": "grhgetwh5wt4ht",
+        "postCode": " gqaghrtebhqehr",
+        "country": " rghq3ery"
+      },
+      "items": [
+        {
+          "name": "ggqrgrqagre",
+          "quantity": "2",
+          "price": "1000",
+          "total": 2000
+        }
+      ],
+      "total": 2000
     }
   ]
 }

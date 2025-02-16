@@ -139,81 +139,178 @@ function SaveInfo({ onClose }) {
         >
           New Invoice
         </h2>
-
         <section className="mb-6">
           <h2
-            className={`text-[12px] font-semibold  ${
+            className={`text-[12px] font-semibold ${
               dark ? "text-[#7E88C3]" : "text-white"
             }`}
           >
             Bill From
           </h2>
+
+          {/* Name */}
+          <span className="text-[12px]">Name</span>
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            className={`w-full border p-2 rounded mt-2 ${
+              dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
+            }`}
+            type="text"
+            placeholder="Name"
+          />
+
+          {/* Street Address */}
+          <span className="text-[12px] mt-2">Street Address</span>
           <input
             name="street"
             value={formData.street}
             onChange={handleInputChange}
             className={`w-full border p-2 rounded mt-2 ${
-              dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
+              dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
             }`}
             type="text"
             placeholder="Street Address"
           />
+
+          {/* City, Post Code, Country */}
           <div className="grid grid-cols-3 gap-4 mt-2">
-            {["city", "postCode", "country"].map((field) => (
+            <div>
+              <span className="text-[12px]">City</span>
               <input
-                key={field}
-                name={field}
-                value={formData[field]}
+                name="city"
+                value={formData.city}
                 onChange={handleInputChange}
-                className={`border p-2 rounded ${
-                  dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
+                className={`border p-2 rounded w-full ${
+                  dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
                 }`}
                 type="text"
-                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                placeholder="City"
               />
-            ))}
+            </div>
+
+            <div>
+              <span className="text-[12px]">Post Code</span>
+              <input
+                name="postCode"
+                value={formData.postCode}
+                onChange={handleInputChange}
+                className={`border p-2 rounded w-full ${
+                  dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
+                }`}
+                type="text"
+                placeholder="Post Code"
+              />
+            </div>
+
+            <div>
+              <span className="text-[12px]">Country</span>
+              <input
+                name="country"
+                value={formData.country}
+                onChange={handleInputChange}
+                className={`border p-2 rounded w-full ${
+                  dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
+                }`}
+                type="text"
+                placeholder="Country"
+              />
+            </div>
           </div>
         </section>
 
         <section>
           <h2
-            className={`text-[12px] font-semibold  ${
+            className={`text-[12px] font-semibold ${
               dark ? "text-[#7E88C3]" : "text-white"
             }`}
           >
             Bill To
           </h2>
-          {["clientName", "clientEmail", "clientStreet"].map((field) => (
-            <input
-              key={field}
-              name={field}
-              value={formData[field]}
-              onChange={handleInputChange}
-              className={`w-full border p-2 rounded mt-2 ${
-                dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
-              }`}
-              type={field === "clientEmail" ? "email" : "text"}
-              placeholder={field
-                .replace("client", "")
-                .replace(/([A-Z])/g, " $1")}
-            />
-          ))}
+
+          {/* Name */}
+          <span className="text-[12px]">Name</span>
+          <input
+            name="clientName"
+            value={formData.clientName}
+            onChange={handleInputChange}
+            className={`w-full border p-2 rounded mt-2 ${
+              dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
+            }`}
+            type="text"
+            placeholder="Name"
+          />
+
+          {/* Email */}
+          <span className="text-[12px] mt-2">Email</span>
+          <input
+            name="clientEmail"
+            value={formData.clientEmail}
+            onChange={handleInputChange}
+            className={`w-full border p-2 rounded mt-2 ${
+              dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
+            }`}
+            type="email"
+            placeholder="Email"
+          />
+
+          {/* Address */}
+          <span className="text-[12px] mt-2">Address</span>
+          <input
+            name="clientStreet"
+            value={formData.clientStreet}
+            onChange={handleInputChange}
+            className={`w-full border p-2 rounded mt-2 ${
+              dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
+            }`}
+            type="text"
+            placeholder="Address"
+          />
+
+          {/* City, Post Code, Country */}
           <div className="grid grid-cols-3 gap-4 mt-2">
-            {["clientCity", "clientPostCode", "clientCountry"].map((field) => (
+            <div>
+              <span className="text-[12px]">City</span>
               <input
-                key={field}
-                name={field}
-                value={formData[field]}
+                name="clientCity"
+                value={formData.clientCity}
                 onChange={handleInputChange}
-                className={`border p-2 rounded ${
-                  dark ? "bg-white text-[#0C0E16]" : "  bg-[#252945] text-white"
+                className={`border p-2 rounded w-full ${
+                  dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
                 }`}
                 type="text"
-                placeholder={field
-                  .replace("client", "")
-                  .replace(/([A-Z])/g, " $1")}
+                placeholder="City"
               />
-            ))}
+            </div>
+
+            <div>
+              <span className="text-[12px]">Post Code</span>
+              <input
+                name="clientPostCode"
+                value={formData.clientPostCode}
+                onChange={handleInputChange}
+                className={`border p-2 rounded w-full ${
+                  dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
+                }`}
+                type="text"
+                placeholder="Post Code"
+              />
+            </div>
+
+            <div>
+              <span className="text-[12px]">Country</span>
+              <input
+                name="clientCountry"
+                value={formData.clientCountry}
+                onChange={handleInputChange}
+                className={`border p-2 rounded w-full ${
+                  dark ? "bg-white text-[#0C0E16]" : "bg-[#252945] text-white"
+                }`}
+                type="text"
+                placeholder="Country"
+              />
+            </div>
           </div>
         </section>
 
